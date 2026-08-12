@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "io.github.codeprism"
-version = "0.2.2"
+version = "262.0.0"
 
 repositories {
   mavenCentral()

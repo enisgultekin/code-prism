@@ -42,7 +42,9 @@ class CodePrismConfigurable : SearchableConfigurable {
       add(JLabel("Palette colors"), BorderLayout.NORTH)
       add(editor, BorderLayout.CENTER)
       add(
-        JLabel("Click a color to select it. The list order is the YAML indentation-depth order."),
+        JLabel(
+          "Configure the depth palette for YAML mapping keys. Code Prism currently supports YAML and is designed to grow toward language-aware structural coloring in future releases.",
+        ),
         BorderLayout.SOUTH,
       )
     }

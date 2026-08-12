@@ -1,6 +1,8 @@
 # Code Prism
 
-Code Prism is an IntelliJ Platform plugin for IntelliJ IDEA and Rider that colors YAML mapping keys by their indentation depth. It intentionally does one small thing: it paints key tokens only, so values, comments, inspections, and the active IDE theme remain readable.
+Code Prism is a structural-coloring plugin for IntelliJ Platform IDEs. In this release, it colors YAML mapping keys by indentation depth with a configurable palette, making nested configuration easier to scan without overpowering values, comments, inspections, or the active IDE theme.
+
+Code Prism is intentionally focused today: YAML mapping keys are the current supported scope. Its longer-term direction is language-aware structural coloring for nested source structures, but additional language support is not part of v262.0.0.
 
 The plugin is represented in the IDE Plugin Manager by the Chromatic Arc logo, with light and dark theme SVG variants packaged in `META-INF`.
 
@@ -12,6 +14,10 @@ The plugin is represented in the IDE Plugin Manager by the Chromatic Arc logo, w
 - Palette recovery: an empty or invalid saved palette is restored to the pastel defaults.
 - Application-level settings at **Settings/Preferences | Tools | Code Prism**.
 - Lightweight annotator: indentation is read only from each key line; no whole-file traversal or background indexing.
+
+## Product direction
+
+Code Prism starts with a precise, low-noise YAML experience and a palette model that makes structural depth immediately visible. Future releases may extend the same language-aware approach to additional source-file structures where depth and nesting improve readability. Those extensions are prospective; the current plugin supports YAML mapping keys only.
 
 ## Requirements and compatibility
 
@@ -36,7 +42,7 @@ This starts a sandbox IntelliJ IDEA instance. Open a YAML file and adjust the or
 
 `buildPlugin` creates `code-prism-<version>.zip` in `build/distributions/`. `verifyPlugin` validates the explicit IntelliJ IDEA Ultimate 2026.2 target. The first invocation downloads IDE artifacts and can take several minutes.
 
-The current local build is **0.2.2**. This patch replaces the Settings page's deferred binding implementation with a synchronous IntelliJ `SearchableConfigurable` lifecycle, so the palette editor is constructed immediately when its page is selected.
+The current local build is **262.0.0**, aligned with the IntelliJ Platform 262 release line. The Settings page uses a synchronous IntelliJ `SearchableConfigurable` lifecycle, so the palette editor is constructed immediately when its page is selected.
 
 ## Palette migration
 

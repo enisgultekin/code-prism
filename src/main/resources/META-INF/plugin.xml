@@ -4,7 +4,9 @@
   <vendor email="maintainers@example.invalid">Code Prism</vendor>
 
   <description><![CDATA[
-    Colors YAML mapping keys by indentation depth with a configurable palette.
+    <p><b>Code Prism</b> brings focused, depth-based color to structured code.</p>
+    <p>Today, it colors YAML mapping keys by indentation depth with a configurable palette, making nested configuration easier to scan while preserving normal syntax colors.</p>
+    <p>This is a deliberately focused first step toward language-aware structural coloring for nested source structures. Support for additional languages is a future direction, not a feature of this release.</p>
   ]]></description>
 
   <depends>com.intellij.modules.platform</depends>
