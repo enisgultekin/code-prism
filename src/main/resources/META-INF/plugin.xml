@@ -1,0 +1,22 @@
+<idea-plugin>
+  <id>io.github.codeprism</id>
+  <name>Code Prism</name>
+  <vendor email="maintainers@example.invalid">Code Prism</vendor>
+
+  <description><![CDATA[
+    Colors YAML mapping keys by indentation depth with a configurable palette.
+  ]]></description>
+
+  <depends>com.intellij.modules.platform</depends>
+  <depends>org.jetbrains.plugins.yaml</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- The registered language ID is `yaml`; `YAML` is only its display name. -->
+    <annotator language="yaml" implementationClass="io.github.codeprism.YamlIndentAnnotator"/>
+    <applicationConfigurable
+      id="io.github.codeprism.settings"
+      parentId="tools"
+      displayName="Code Prism"
+      instance="io.github.codeprism.CodePrismConfigurable"/>
+  </extensions>
+</idea-plugin>

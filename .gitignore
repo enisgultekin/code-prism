@@ -1,0 +1,24 @@
+# Gradle and IntelliJ Platform build state
+.gradle/
+.gradle-user-home/
+.intellijPlatform/
+.kotlin/
+.plugin-verifier-home/
+build/
+
+# IDE and local runtime state
+.idea/
+*.iml
+out/
+idea-sandbox/
+
+# Projectless workspace material and generated deliveries
+outputs/
+work/
+*.zip
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+
+# OS files
+.DS_Store
+Thumbs.db
