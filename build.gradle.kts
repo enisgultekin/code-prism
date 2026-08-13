@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "io.github.codeprism"
-version = "262.0.0"
+version = "261.0.0"
 
 repositories {
   mavenCentral()
@@ -19,19 +19,23 @@ dependencies {
   testImplementation(kotlin("test"))
 
   intellijPlatform {
-    intellijIdeaUltimate("2026.2")
+    // Compile against the oldest supported platform API so this one ZIP remains 261-safe.
+    intellijIdeaUltimate("2026.1")
     bundledPlugin("org.jetbrains.plugins.yaml")
     testFramework(org.jetbrains.intellij.platform.gradle.TestFrameworkType.Platform)
   }
 }
 
 kotlin {
-  jvmToolchain(25)
+  // IntelliJ Platform 2025.1 / build 251 through 2026.1 / build 261 use Java 21.
+  // Java 21 bytecode also runs on the Java 25 runtime bundled with build 262.
+  jvmToolchain(21)
 }
 
 intellijPlatform {
   pluginVerification {
     ides {
+      create(IntelliJPlatformType.IntellijIdeaUltimate, "2026.1")
       create(IntelliJPlatformType.IntellijIdeaUltimate, "2026.2")
     }
   }
@@ -45,12 +49,12 @@ tasks {
   }
 
   withType<JavaCompile> {
-    sourceCompatibility = "25"
-    targetCompatibility = "25"
+    sourceCompatibility = "21"
+    targetCompatibility = "21"
   }
 
   withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    compilerOptions.jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_25)
+    compilerOptions.jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
   }
 
   withType<org.jetbrains.intellij.platform.gradle.tasks.VerifyPluginTask> {
@@ -61,7 +65,7 @@ tasks {
   }
 
   patchPluginXml {
-    sinceBuild.set("262")
+    sinceBuild.set("261")
     untilBuild.set("262.*")
   }
 

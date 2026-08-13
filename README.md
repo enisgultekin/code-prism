@@ -2,7 +2,7 @@
 
 Code Prism is a structural-coloring plugin for IntelliJ Platform IDEs. In this release, it colors YAML mapping keys by indentation depth with a configurable palette, making nested configuration easier to scan without overpowering values, comments, inspections, or the active IDE theme.
 
-Code Prism is intentionally focused today: YAML mapping keys are the current supported scope. Its longer-term direction is language-aware structural coloring for nested source structures, but additional language support is not part of v262.0.0.
+Code Prism is intentionally focused today: YAML mapping keys are the current supported scope. Its longer-term direction is language-aware structural coloring for nested source structures, but additional language support is not part of v261.0.0.
 
 The plugin is represented in the IDE Plugin Manager by the Chromatic Arc logo, with light and dark theme SVG variants packaged in `META-INF`.
 
@@ -21,9 +21,10 @@ Code Prism starts with a precise, low-noise YAML experience and a palette model 
 
 ## Requirements and compatibility
 
-- JDK 25. The included Gradle wrapper uses Gradle 9.0.0.
-- Built for IntelliJ IDEA Ultimate 2026.2 (platform build 262), including IU-262.8665.337.
-- The plugin has no language-specific JVM APIs and depends only on the bundled YAML plugin, so the same ZIP can be installed in compatible IntelliJ IDEA editions in that build range.
+- JDK 21. The included Gradle wrapper uses Gradle 9.0.0.
+- Built against IntelliJ IDEA Ultimate 2026.1 (platform build 261) and verified for the 261–262 platform range, including IntelliJ IDEA Ultimate 2026.2.
+- The packaged plugin declares `since-build="261"` and `until-build="262.*"`; the same ZIP supports compatible IDEs in both build lines.
+- The plugin has no language-specific JVM APIs and depends only on the bundled YAML plugin.
 
 ## Develop
 
@@ -40,9 +41,9 @@ This starts a sandbox IntelliJ IDEA instance. Open a YAML file and adjust the or
 ./gradlew verifyPlugin
 ```
 
-`buildPlugin` creates `code-prism-<version>.zip` in `build/distributions/`. `verifyPlugin` validates the explicit IntelliJ IDEA Ultimate 2026.2 target. The first invocation downloads IDE artifacts and can take several minutes.
+`buildPlugin` creates `code-prism-<version>.zip` in `build/distributions/`. `verifyPlugin` validates IntelliJ IDEA Ultimate 2026.1 and 2026.2 targets. The first invocation downloads IDE artifacts and can take several minutes.
 
-The current local build is **262.0.0**, aligned with the IntelliJ Platform 262 release line. The Settings page uses a synchronous IntelliJ `SearchableConfigurable` lifecycle, so the palette editor is constructed immediately when its page is selected.
+The current local build is **261.0.0**. Version numbers identify the oldest supported IntelliJ Platform build line; this release provides one ZIP for builds 261–262. The Settings page uses a synchronous IntelliJ `SearchableConfigurable` lifecycle, so the palette editor is constructed immediately when its page is selected.
 
 ## Palette migration
 
