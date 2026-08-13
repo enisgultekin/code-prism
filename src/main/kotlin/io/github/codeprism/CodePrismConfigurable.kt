@@ -43,7 +43,7 @@ class CodePrismConfigurable : SearchableConfigurable {
       add(editor, BorderLayout.CENTER)
       add(
         JLabel(
-          "Configure the depth palette for YAML mapping keys. Code Prism currently supports YAML and is designed to grow toward language-aware structural coloring in future releases.",
+          "Configure the shared depth palette for YAML mapping keys and XML element names. Code Prism is designed to grow toward language-aware structural coloring in future releases.",
         ),
         BorderLayout.SOUTH,
       )

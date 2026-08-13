@@ -4,12 +4,9 @@ import com.intellij.lang.annotation.Annotator
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.openapi.editor.colors.EditorColorsManager
-import com.intellij.openapi.editor.colors.EditorColorsScheme
-import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
 import com.intellij.openapi.editor.markup.TextAttributes
 import com.intellij.psi.PsiElement
 import org.jetbrains.yaml.psi.YAMLKeyValue
-import java.awt.Color
 
 /**
  * Deliberately works from the key's line prefix instead of walking sibling maps.
@@ -23,7 +20,7 @@ class YamlIndentAnnotator : Annotator {
   override fun annotate(element: PsiElement, holder: AnnotationHolder) {
     val keyValue = element as? YAMLKeyValue ?: return
     val key = keyValue.key ?: return
-    val color = colorFor(depthFor(keyValue), EditorColorsManager.getInstance().globalScheme)
+    val color = DepthPalette.colorFor(depthFor(keyValue), EditorColorsManager.getInstance().globalScheme)
 
     holder.newSilentAnnotation(HighlightSeverity.INFORMATION)
       .range(key.textRange)
@@ -44,14 +41,6 @@ class YamlIndentAnnotator : Annotator {
       offset++
     }
     return indentation
-  }
-
-  private fun colorFor(depth: Int, scheme: EditorColorsScheme): Color {
-    val palette = CodePrismSettings.getInstance().colors()
-    if (palette.isNotEmpty()) return Color.decode(palette[depth % palette.size])
-
-    return scheme.getAttributes(DefaultLanguageHighlighterColors.KEYWORD)?.foregroundColor
-      ?: scheme.defaultForeground
   }
 
   private companion object {

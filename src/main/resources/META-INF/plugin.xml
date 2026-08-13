@@ -5,16 +5,18 @@
 
   <description><![CDATA[
     <p><b>Code Prism</b> brings focused, depth-based color to structured code.</p>
-    <p>Today, it colors YAML mapping keys by indentation depth with a configurable palette, making nested configuration easier to scan while preserving normal syntax colors.</p>
+    <p>Today, it colors YAML mapping keys and XML element names by structural depth with a configurable palette, making nested configuration easier to scan while preserving normal syntax colors.</p>
     <p>This is a deliberately focused first step toward language-aware structural coloring for nested source structures. Support for additional languages is a future direction, not a feature of this release.</p>
   ]]></description>
 
   <depends>com.intellij.modules.platform</depends>
+  <depends>com.intellij.modules.xml</depends>
   <depends>org.jetbrains.plugins.yaml</depends>
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- The registered language ID is `yaml`; `YAML` is only its display name. -->
     <annotator language="yaml" implementationClass="io.github.codeprism.YamlIndentAnnotator"/>
+    <annotator language="XML" implementationClass="io.github.codeprism.XmlDepthAnnotator"/>
     <applicationConfigurable
       id="io.github.codeprism.settings"
       parentId="tools"
